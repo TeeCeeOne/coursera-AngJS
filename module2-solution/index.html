@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Shopping List Check Off</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <style>
+      .emptyMessage {
+        font-weight: bold;
+        color: red;
+        font-size: 1.2em;
+      }
+      li {
+        margin-bottom: 7px;
+        font-size: 1.2em;
+      }
+      li > button {
+        margin-left: 6px;
+      }
+      button > span {
+        color: green;
+      }
+    </style>
+  </head>
+<body ng-app="ShoppingListCheckOff" >
+  <h1>Shopping List Check Off</h1>
+  <div class="container">
+
+  <div class="row">
+
+    <!-- To Buy List -->
+    <div ng-controller="ToBuyController as buyCtrl" class="col-md-6">
+     <h2>To Buy:</h2>
+     <ul>
+       <li ng-repeat="item in buyCtrl.items">
+
+         Buy {{item.quantity}} {{item.name}}
+         <button ng-click="buyCtrl.bought(buyCtrl.items[$index])" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bought</button></li>
+       <!-- <li>Buy 10 cookies <button class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bought</button></li>
+       <li>Buy 10 cookies <button class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bought</button></li> -->
+     </ul>
+     <div ng-if="buyCtrl.items.length === 0" class="emptyMessage">Everything is bought now!</div>
+     <!-- <div class="emptyMessage">Everything is bought now!</div> -->
+    </div>
+
+    <!-- Already Bought List -->
+    <div ng-controller="AlreadyBoughtController as boughtCtrl" class="col-md-6">
+     <h2>Already Bought:</h2>
+     <ul>
+       <li ng-repeat="item in boughtCtrl.items">Bought {{item.quantity}} {{item.name}}</li>
+     </ul>
+     <div ng-if="boughtCtrl.items.length === 0" class="emptyMessage">Nothing bought yet.</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
