@@ -2,6 +2,7 @@
 <ol>
   <li ng-repeat="item in foundList.searchedItems ">
       [{{item.shortName}}] {{item.name}}  - {{item.desc}}
-    <button ng-click="foundList.removeItem($index);">Remove Item</button>
+    <button ng-click="foundList.removeItem($index);">Don't want this one!</button>
+    <!-- <button ng-click="foundList.onRemoveItem($index);">Remove Item</button> -->
   </li>
 </ol>

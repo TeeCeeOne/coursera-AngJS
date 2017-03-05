@@ -5,7 +5,7 @@ angular.module('NarrowItDownApp', [])
 .controller('NarrowItDownController', NarrowItDownController)
 .service('MenuSearchService', MenuSearchService)
 .directive('foundItems', MatchedItems)
-.constant('ApiBasePath', "http://davids-restaurant.herokuapp.com");
+.constant('ApiBasePath', "https://davids-restaurant.herokuapp.com");
 
 
 // !!!!!!!!!! HIER noch one-side-binding "<" verwenden s. Bsp lecture 30 !!!!!!!!!!!!!
@@ -17,6 +17,7 @@ function MatchedItems() {
     scope: {
       foundList: '=foundItems',
       title: '@title'
+      // onRemove: '='
     }
   };
 
@@ -49,6 +50,7 @@ function NarrowItDownController(MenuSearchService) {
     };
 
     nidCtrl.removeItem = function(itemIndex) {
+      console.log("'this' is : ", this);
       MenuSearchService.removeItem(itemIndex);
       nidCtrl.searchedItems = MenuSearchService.getMatchedItems();
     };
