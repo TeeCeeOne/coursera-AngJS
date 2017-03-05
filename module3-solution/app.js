@@ -8,6 +8,8 @@ angular.module('NarrowItDownApp', [])
 .constant('ApiBasePath', "http://davids-restaurant.herokuapp.com");
 
 
+// !!!!!!!!!! HIER noch one-side-binding "<" verwenden s. Bsp lecture 30 !!!!!!!!!!!!!
+
 // directive definition
 function MatchedItems() {
   var ddo = {
