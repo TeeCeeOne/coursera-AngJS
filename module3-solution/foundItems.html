@@ -1,8 +1,8 @@
 <h3>{{ title }}</h3>
 <ol>
-  <li ng-repeat="item in foundList.searchedItems ">
+  <!-- <li ng-repeat="item in foundList.searchedItems "> -->
+  <li ng-repeat="item in foundList ">
       [{{item.shortName}}] {{item.name}}  - {{item.desc}}
-    <button ng-click="foundList.removeItem($index);">Don't want this one!</button>
-    <!-- <button ng-click="foundList.onRemoveItem($index);">Remove Item</button> -->
+    <button ng-click="onRemoveItem({index: $index});">Don't want this one!</button>
   </li>
 </ol>

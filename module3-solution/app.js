@@ -7,24 +7,18 @@ angular.module('NarrowItDownApp', [])
 .directive('foundItems', MatchedItems)
 .constant('ApiBasePath', "https://davids-restaurant.herokuapp.com");
 
-
-// !!!!!!!!!! HIER noch one-side-binding "<" verwenden s. Bsp lecture 30 !!!!!!!!!!!!!
-
 // directive definition
 function MatchedItems() {
   var ddo = {
     templateUrl: 'foundItems.html',
     scope: {
-      foundList: '=foundItems',
-      title: '@title'
-      // onRemove: '='
+      foundList: '<foundItems',
+      onRemoveItem: '&'
     }
   };
 
   return ddo;
 }
-
-
 
 NarrowItDownController .$inject = ['MenuSearchService'];
 function NarrowItDownController(MenuSearchService) {
@@ -41,8 +35,8 @@ function NarrowItDownController(MenuSearchService) {
       nidCtrl.searchedItems = MenuSearchService.getMatchedItems();
       // this would ALWAYS end up with all items of the http-Service - why?
       // nidCtrl.myItems = result;
-      console.log("nidCtrl.searchedItems",nidCtrl.searchedItems);
-      console.log("itemsback#:",result.data.length);
+      // console.log("nidCtrl.searchedItems",nidCtrl.searchedItems);
+      // console.log("itemsback#:",result.data.length);
       });
       // .catch(function (error) {
       //   console.log("Something went terribly wrong.");
@@ -81,7 +75,6 @@ function MenuSearchService($http, ApiBasePath) {
               shortName: allItems[i].short_name,
               desc: allItems[i].description
             }
-            // service.matchedItems.push(newItem);
             matchedItems.push(newItem);
           }
         }
@@ -102,6 +95,5 @@ function MenuSearchService($http, ApiBasePath) {
   };
 
 }
-
 
 })();
