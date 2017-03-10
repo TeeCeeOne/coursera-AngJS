@@ -20,11 +20,11 @@
     </div>
     <br/>
     <br/>
-    <!-- <div ng-repeat="item in nidCtrl.myItems">
-      [{{item.shortName}}] {{item.name}}  - {{item.desc}}
-    </div> -->
     <!-- found-items should be implemented as a component -->
-    <matched-items found-items="nidCtrl.searchedItems" on-remove-item="nidCtrl.removeItem(index)"></matched-items>
+
+      <matched-items found-items="nidCtrl.searchedItems" on-remove-item="nidCtrl.removeItem(index)"></matched-items>
+
+    <div class="error" ng-show="nidCtrl.searchedItems === -1 ">Nothing found!</div>
   </div>
 
 </body>

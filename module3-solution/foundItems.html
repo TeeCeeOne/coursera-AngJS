@@ -1,8 +1,9 @@
 <h3>{{ title }}</h3>
 <ol>
   <!-- <li ng-repeat="item in foundList.searchedItems "> -->
-  <li ng-repeat="item in foundList ">
+  <li ng-repeat="item in lunchList.foundList ">
       [{{item.shortName}}] {{item.name}}  - {{item.desc}}
-    <button ng-click="onRemoveItem({index: $index});">Don't want this one!</button>
+    <button ng-click="lunchList.onRemoveItem({index: $index});">Don't want this one!</button>
   </li>
 </ol>
+<div class="error" ng-if="lunchList.noMenues()">Nothing found!</div>

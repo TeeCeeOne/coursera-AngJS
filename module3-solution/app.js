@@ -14,10 +14,24 @@ function MatchedItems() {
     scope: {
       foundList: '<foundItems',
       onRemoveItem: '&'
-    }
+    },
+    controller: NarrowItDownDirectiveController,
+    controllerAs: 'lunchList',
+    bindToController: true
   };
 
   return ddo;
+}
+
+function NarrowItDownDirectiveController() {
+  var lunchList = this;
+
+  lunchList.noMenues = function () {
+    if (lunchList.foundList.length === 0) {
+      return true;
+    }
+    return false;
+  };
 }
 
 NarrowItDownController .$inject = ['MenuSearchService'];
@@ -44,10 +58,13 @@ function NarrowItDownController(MenuSearchService) {
     };
 
     nidCtrl.removeItem = function(itemIndex) {
-      console.log("'this' is : ", this);
       MenuSearchService.removeItem(itemIndex);
       nidCtrl.searchedItems = MenuSearchService.getMatchedItems();
     };
+
+    nidCtrl.listIsEmpty = function() {
+      return nidCtrl.searchedItems.length === 0;
+    }
 
 };
 
@@ -59,6 +76,7 @@ function MenuSearchService($http, ApiBasePath) {
 
   service.getMatchedMenuItems = function (searchTerm) {
     matchedItems = [];
+    if (searchTerm.length === 0) {return -1}
     return $http({
       method: "GET",
       url: (ApiBasePath + "/menu_items.json")
